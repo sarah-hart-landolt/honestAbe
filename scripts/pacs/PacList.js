@@ -20,7 +20,7 @@ const render = pacsToRender => {
                 return corporations.find(corporation=> corporation.id === cdr.corporationId)})
             
         
-            return Pac(pacObject, corps)
+            return Pac(pacObject, corps, corporateDonationMatches)
         }
     ).join("")
 }

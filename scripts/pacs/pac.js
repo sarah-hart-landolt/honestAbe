@@ -1,4 +1,4 @@
-export const Pac = (pacObject, corporationArray) => {
+export const Pac = (pacObject, corporationArray, corporateDonationMatches) => {
     return `
     <article class="pacs">
     <section class="pac">
@@ -9,12 +9,16 @@ export const Pac = (pacObject, corporationArray) => {
             <div>${pacObject.address}</div>
         </div>
         <div class="pac__donors">
-             <ul>${
-                corporationArray.map(corporation=> {
-                return `<li>${corporation.company}</li>`}
+            <h2>Donors</h2>
+             <ul>
+            ${
+                corporateDonationMatches.map(cdm=> {
+                const singleCorp = corporationArray.find(corp=> corp.id === cdm.corporationId)
+                return `<li>${singleCorp.company} ($${cdm.amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")})</li>`}
                 ).join(" ")
             }
             </ul>
+           
         </div>
     </section>
 </article>
